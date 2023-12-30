@@ -93,7 +93,7 @@ export function PeopleDataTable<TData, TValue>({
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="outline" className="ml-4">
-              Columns
+             فیلترها
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -103,7 +103,7 @@ export function PeopleDataTable<TData, TValue>({
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem
-                    key={column.id}
+                    key={column}
                     className="capitalize"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value: boolean) => {

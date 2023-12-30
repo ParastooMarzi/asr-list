@@ -20,57 +20,6 @@ interface CustomColumnDef<T> extends ColumnDef<T> {
 
 export const columns: CustomColumnDef<Person>[] = [
   {
-    header: "شماره مبدا",
-    accessorKey: "source_number",
-  },
-  {
-    header: "شماره مقصد",
-    accessorKey: "des_number",
-  },
-  {
-    header: "مدت زمان مکالمه",
-    accessorKey: "call_duration",
-  },
-  {
-    header: "تاریخ",
-    accessorKey: "date",
-  },
-  {
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => {
-          column.toggleSorting(column.getIsSorted() === "asc");
-        }}
-      >
-        ردیف
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    accessorKey: "id",
-  },
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => {
-          table.toggleAllPageRowsSelected(!!value);
-        }}
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     id: "actions",
     cell: ({ row }) => {
       const person = row.original as Person;
@@ -94,5 +43,61 @@ export const columns: CustomColumnDef<Person>[] = [
         </DropdownMenu>
       );
     },
+  },
+
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={table.getIsAllPageRowsSelected()}
+        onCheckedChange={(value) => {
+          table.toggleAllPageRowsSelected(!!value);
+        }}
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => {
+          row.toggleSelected(!!value);
+        }}
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+
+  {
+    header: "شماره مبدا",
+    accessorKey: "source_number",
+  },
+  {
+    header: "شماره مقصد",
+    accessorKey: "des_number",
+  },
+  {
+    header: "مدت زمان مکالمه",
+    accessorKey: "call_duration",
+  },
+  {
+    header: "تاریخ",
+    accessorKey: "date",
+  },
+
+ 
+ 
+  {
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => {
+          column.toggleSorting(column.getIsSorted() === "asc");
+        }}
+      >
+        ردیف
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    accessorKey: "id",
   },
 ];
