@@ -11,6 +11,7 @@ const Table = React.forwardRef<
       ref={ref}
       className={cn("w-full caption-bottom text-sm", className)}
       {...props}
+      style={{ textAlign: 'right' }}
     />
   </div>
 ))
@@ -20,7 +21,7 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props}  />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -74,6 +75,7 @@ const TableHead = React.forwardRef<
       className
     )}
     {...props}
+    style={{ textAlign: 'right' }}
   />
 ))
 TableHead.displayName = "TableHead"

@@ -3,14 +3,8 @@ import React from "react";
 import { Button } from "../../components/ui/button";
 import { Person } from "../../people";
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+
+import { ArrowUpDown, Calendar, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface CustomColumnDef<T> extends ColumnDef<T> {
@@ -19,32 +13,7 @@ interface CustomColumnDef<T> extends ColumnDef<T> {
 }
 
 export const columns: CustomColumnDef<Person>[] = [
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const person = row.original as Person;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="w-8 h-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => {
-                navigator.clipboard.writeText(person.source_number.toString());
-              }}
-            >
-              Copy Source Number
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-
+  
   {
     id: "select",
     header: ({ table }) => (
@@ -66,38 +35,42 @@ export const columns: CustomColumnDef<Person>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-
-  {
-    header: "شماره مبدا",
-    accessorKey: "source_number",
-  },
-  {
-    header: "شماره مقصد",
-    accessorKey: "des_number",
-  },
   {
     header: "مدت زمان مکالمه",
     accessorKey: "call_duration",
   },
+
+  {
+    header: "شماره مقصد",
+    accessorKey: "des_number",
+  },
+   {
+    header: "شماره مبدا",
+    accessorKey: "source_number",
+  },
   {
     header: "تاریخ",
-    accessorKey: "date",
+    accessorKey: "date"
   },
-
- 
- 
+  
   {
     header: ({ column }) => (
-      <Button
+      <div>
+        <Button
         variant="ghost"
         onClick={() => {
           column.toggleSorting(column.getIsSorted() === "asc");
         }}
+        
       >
         ردیف
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
+
+      </div>
+      
     ),
     accessorKey: "id",
+    
   },
 ];

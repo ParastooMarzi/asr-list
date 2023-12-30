@@ -32,6 +32,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { downloadToExcel } from '@/lib/xlsx';
+import { Calendar } from '../../components/ui/calendar';
+import { CalendarCheck, CalendarIcon } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -70,18 +72,32 @@ export function PeopleDataTable<TData, TValue>({
     },
   });
 
+
   return (
     <div>
       {/* input */}
       <div className="flex items-center py-4">
         <Input
-          placeholder="جست و جو"
+         style={{ textAlign: 'right'}}
+          placeholder="شماره مبدا"
           value={
             (table.getColumn('source_number')?.getFilterValue() as string) ||
             ''
           }
           onChange={(e) => {
             table.getColumn('source_number')?.setFilterValue(e.target.value);
+          }}
+          className="max-w-sm"
+        />
+        <Input
+         style={{ textAlign: 'right'}}
+          placeholder="تاریخ"
+          value={
+            (table.getColumn('date')?.getFilterValue() as string) ||
+            ''
+          }
+          onChange={(e) => {
+            table.getColumn('date')?.setFilterValue(e.target.value);
           }}
           className="max-w-sm"
         />
@@ -116,6 +132,13 @@ export function PeopleDataTable<TData, TValue>({
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+
+     
+        
+        
+        
+
+        
       </div>
 
       {/* table */}
