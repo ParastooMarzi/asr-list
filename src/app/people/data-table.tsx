@@ -87,7 +87,7 @@ export function PeopleDataTable<TData, TValue>({
           onChange={(e) => {
             table.getColumn('source_number')?.setFilterValue(e.target.value);
           }}
-          className="max-w-sm"
+          className="ml-4"
         />
         <Input
          style={{ textAlign: 'right' }}
@@ -99,7 +99,7 @@ export function PeopleDataTable<TData, TValue>({
           onChange={(e) => {
             table.getColumn('date')?.setFilterValue(e.target.value);
           }}
-          className="max-w-sm"
+          className="ml-4"
         />
 
         <Button onClick={() => downloadToExcel()} className="ml-4">
