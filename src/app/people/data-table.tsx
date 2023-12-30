@@ -90,7 +90,7 @@ export function PeopleDataTable<TData, TValue>({
           className="max-w-sm"
         />
         <Input
-         style={{ textAlign: 'right'}}
+         style={{ textAlign: 'right' }}
           placeholder="تاریخ"
           value={
             (table.getColumn('date')?.getFilterValue() as string) ||
@@ -103,7 +103,7 @@ export function PeopleDataTable<TData, TValue>({
         />
 
         <Button onClick={() => downloadToExcel()} className="ml-4">
-          Export to Excel
+          Excel
         </Button>
         <ThemeToggle className="ml-4" />
         <DropdownMenu>
