@@ -37,16 +37,16 @@ export const columns: CustomColumnDef<Person>[] = [
   },
   {
     header: "مدت زمان مکالمه",
-    accessorKey: "call_duration",
+    accessorKey: "duration",
   },
 
   {
     header: "شماره مقصد",
-    accessorKey: "des_number",
+    accessorKey: "dst",
   },
    {
     header: "شماره مبدا",
-    accessorKey: "source_number",
+    accessorKey: "src",
   },
   {
     header: "تاریخ",

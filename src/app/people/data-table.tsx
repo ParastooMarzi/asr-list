@@ -33,7 +33,8 @@ import {
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { downloadToExcel } from '@/lib/xlsx';
 import { Calendar } from '../../components/ui/calendar';
-import { CalendarCheck, CalendarIcon } from 'lucide-react';
+import { AlignJustify, CalendarCheck, CalendarIcon } from 'lucide-react';
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -75,19 +76,22 @@ export function PeopleDataTable<TData, TValue>({
 
   return (
     <div>
+      <Button onClick={() => downloadToExcel()} style={{ marginBottom: '20px' }}>
+          Excel
+        </Button>
       {/* input */}
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 justify-end">
         <Input
          style={{ textAlign: 'right'}}
           placeholder="شماره مبدا"
           value={
-            (table.getColumn('source_number')?.getFilterValue() as string) ||
+            (table.getColumn('src')?.getFilterValue() as string) ||
             ''
           }
           onChange={(e) => {
-            table.getColumn('source_number')?.setFilterValue(e.target.value);
+            table.getColumn('src')?.setFilterValue(e.target.value);
           }}
-          className="ml-4"
+          className="ml-4 w-120"
         />
         <Input
          style={{ textAlign: 'right' }}
@@ -99,13 +103,11 @@ export function PeopleDataTable<TData, TValue>({
           onChange={(e) => {
             table.getColumn('date')?.setFilterValue(e.target.value);
           }}
-          className="ml-4"
+          className="ml-4 w-120"
         />
 
-        <Button onClick={() => downloadToExcel()} className="ml-4">
-          Excel
-        </Button>
-        <ThemeToggle className="ml-4" />
+        
+        
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="outline" className="ml-4">
@@ -131,10 +133,8 @@ export function PeopleDataTable<TData, TValue>({
                 );
               })}
           </DropdownMenuContent>
-        </DropdownMenu>
-
-     
-        
+        </DropdownMenu>    
+        <ThemeToggle className="ml-4" />
         
         
 
@@ -166,6 +166,7 @@ export function PeopleDataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
+                
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -175,6 +176,7 @@ export function PeopleDataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
+   
                 </TableRow>
               ))
             ) : (
@@ -186,32 +188,43 @@ export function PeopleDataTable<TData, TValue>({
         </Table>
       </div>
       {/* pagination */}
-      <div className="flex items-center justify-start space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => {
-            table.previousPage();
-          }}
-          disabled={!table.getCanPreviousPage()}
-        >
-          صفحه قبل
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => {
-            table.nextPage();
-          }}
-          disabled={!table.getCanNextPage()}
-        >
-          صفحه بعد
-        </Button>
-      </div>
       <div className="flex-1 text-sm text-muted-foreground">
         {table.getFilteredSelectedRowModel().rows.length} of{' '}
         {table.getFilteredRowModel().rows.length} row(s) selected
       </div>
+      <Pagination className='justify-end'>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious onClick={() => {
+            table.previousPage();
+          }}
+          disabled={!table.getCanPreviousPage()} />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext onClick={() => {
+            table.nextPage();
+          }}
+          disabled={!table.getCanNextPage()} />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+
+      
+      
     </div>
   );
 }

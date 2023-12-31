@@ -7,9 +7,9 @@ export function downloadToExcel() {
       sheet: "Persons",
       columns: [
         { label: "Person ID", value: "id" },
-        { label: "شماره مبدا", value: "source_number" },
-        { label: "شماره مقصد", value: "des_number" },
-        { label: "مدت زمان مکالمه", value: "call_duration" },
+        { label: "شماره مبدا", value: "src" },
+        { label: "شماره مقصد", value: "dst" },
+        { label: "مدت زمان مکالمه", value: "duration" },
         { label: "تاریخ", value: "date" },
        
       ],
