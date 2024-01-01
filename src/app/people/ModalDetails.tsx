@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Modal from 'react-modal';
-//import { playAudio } from './playAudio';
+import { playAudio } from './PlayAudio';
 import { Play } from 'lucide-react';
 
 interface ModalDetailsProps {
@@ -26,7 +26,7 @@ export const ModalDetails: React.FC<ModalDetailsProps> = ({ isOpen, onRequestClo
     >
       <div>
         <p>Recording File: {recordingFile}</p>
-        <button onClick={() => playAudio(recordingFile)}> <Play /></button>
+        <button onClick={() => PlayAudio(recordingFile)}> <Play /></button>
       </div>
       <button onClick={onRequestClose}>Close Modal</button>
     </Modal>

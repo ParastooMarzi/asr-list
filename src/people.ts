@@ -34,19 +34,3 @@ people.forEach((person) => {
 });
 
 
-const fetchAudioURL = async (fileName: string): Promise<string> => {
-  try {
-    
-    const response = await fetch(`https://your-audio-api.com/getAudioURL/${fileName}`);
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch audio URL');
-    }
-
-    const data = await response.json();
-    return data.url; 
-  } catch (error) {
-    console.error('Error fetching audio URL:', error);
-    return '';
-  }
-};
