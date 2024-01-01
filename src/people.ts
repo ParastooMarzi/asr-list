@@ -36,7 +36,7 @@ people.forEach((person) => {
 
 const fetchAudioURL = async (fileName: string): Promise<string> => {
   try {
-    // Replace this URL with your actual API endpoint
+    
     const response = await fetch(`https://your-audio-api.com/getAudioURL/${fileName}`);
     
     if (!response.ok) {
@@ -44,9 +44,9 @@ const fetchAudioURL = async (fileName: string): Promise<string> => {
     }
 
     const data = await response.json();
-    return data.url; // Assuming the API returns the audio URL in a 'url' field
+    return data.url; 
   } catch (error) {
     console.error('Error fetching audio URL:', error);
-    return ''; // Return an empty string or handle errors as required
+    return '';
   }
 };
