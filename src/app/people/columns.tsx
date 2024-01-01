@@ -4,8 +4,10 @@ import { Button } from "../../components/ui/button";
 import { Person } from "../../people";
 import { ColumnDef } from "@tanstack/react-table";
 
-import { ArrowUpDown, Calendar, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, Calendar, MoreHorizontal, Play } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import PlayAudio from "@/app/people/playAudio";
+
 
 interface CustomColumnDef<T> extends ColumnDef<T> {
   header?: React.ReactNode | ((args: { column: CustomColumnDef<T> }) => React.ReactNode);
@@ -36,6 +38,14 @@ export const columns: CustomColumnDef<Person>[] = [
     enableHiding: false,
   },
   {
+    header: "جزئیات تماس",
+    accessorKey: "recordingfile",
+    cell: ({ row }) => (
+      <PlayAudio/>
+    
+    ),
+  },
+  {
     header: "مدت زمان مکالمه",
     accessorKey: "duration",
   },
@@ -53,6 +63,7 @@ export const columns: CustomColumnDef<Person>[] = [
     accessorKey: "date"
   },
   
+   
   {
     header: ({ column }) => (
       <div>

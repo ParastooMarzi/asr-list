@@ -32,8 +32,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { downloadToExcel } from '@/lib/xlsx';
-import { Calendar } from '../../components/ui/calendar';
-import { AlignJustify, CalendarCheck, CalendarIcon } from 'lucide-react';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 
 interface DataTableProps<TData, TValue> {
@@ -45,6 +43,9 @@ export function PeopleDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+
+
+  
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rowSelection, setRowSelection] = useState<Record<string, any>>({});
@@ -95,7 +96,7 @@ export function PeopleDataTable<TData, TValue>({
         />
         <Input
          style={{ textAlign: 'right' }}
-          placeholder="تاریخ"
+          placeholder="تا تاریخ"
           value={
             (table.getColumn('date')?.getFilterValue() as string) ||
             ''
@@ -105,8 +106,18 @@ export function PeopleDataTable<TData, TValue>({
           }}
           className="ml-4 w-120"
         />
-
-        
+        <Input
+         style={{ textAlign: 'right' }}
+          placeholder="از تاریخ"
+          value={
+            (table.getColumn('date')?.getFilterValue() as string) ||
+            ''
+          }
+          onChange={(e) => {
+            table.getColumn('date')?.setFilterValue(e.target.value);
+          }}
+          className="ml-4 w-120"
+        />
         
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -135,10 +146,6 @@ export function PeopleDataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>    
         <ThemeToggle className="ml-4" />
-        
-        
-
-        
       </div>
 
       {/* table */}
@@ -182,7 +189,7 @@ export function PeopleDataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell>No results</TableCell>
-              </TableRow>
+              </TableRow>             
             )}
           </TableBody>
         </Table>
