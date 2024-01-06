@@ -1,5 +1,5 @@
 import xlsx, { IJsonSheet } from "json-as-xlsx";
-import { people } from "@/people";
+import { fetchData, Record } from '../api';
 
 export function downloadToExcel() {
   let columns: IJsonSheet[] = [
@@ -13,7 +13,7 @@ export function downloadToExcel() {
         { label: "تاریخ", value: "date" },
        
       ],
-      content: people,
+      content: fetchData,
     },
   ];
 
